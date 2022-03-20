@@ -1,0 +1,99 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<div class="wrapper" style="display: inline-block">
+    <button class="wave-btn" onclick="Draw()">
+        <span class="wave-btn__text">Draw Figure List</span>
+        <span class="wave-btn__waves"></span>
+    </button>
+</div>
+
+<div class="text-center">
+    <canvas id="myCanvas" width="1400" height="800"
+        style="border:1px solid limegreen;">
+        Your browser does not support the canvas element.
+    </canvas>
+</div>
+<pre>@Model.figures</pre>
+<script>
+    
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    function Draw(){
+        ctx.clearRect(0, 0, 1400, 800);
+        $.get("draw/GetFigures", list => {
+            console.log("draw");
+            console.log(list);
+            let fig = list[0].points;
+            //console.log(fig);
+            //otrezok
+            ctx.beginPath();
+            ctx.moveTo(fig[0], fig[1]);
+            ctx.lineTo(fig[2], fig[3]);
+            ctx.stroke();
+            //triangle
+            fig = list[1].points;
+            ctx.fillStyle = "#ad00c0";
+            ctx.beginPath();
+            ctx.moveTo(fig[0], fig[1]);
+            ctx.lineTo(fig[2], fig[3]);
+            ctx.lineTo(fig[4], fig[5]);
+            ctx.lineTo(fig[0], fig[1]);
+            ctx.fill(); 
+            ctx.stroke();
+            //rectangle
+            fig = list[2].points;
+            ctx.fillStyle = "#FF0000";
+            ctx.rect(fig[0], fig[1], 300, 150);
+            ctx.fill(); 
+            //circle
+            fig = list[3].points;
+            ctx.beginPath();
+            ctx.arc(fig[0], fig[1], 50, 0, 2 * Math.PI, false);
+            ctx.fill(); 
+            ctx.stroke();
+            //ellipse
+            fig = list[4].points;
+            ctx.beginPath();
+            ctx.ellipse(fig[0], fig[1], 50, 100, Math.PI / 4, 0, 2 * Math.PI);
+            ctx.fill(); 
+            ctx.stroke();
+            //Lomanaya
+            fig = list[5].points;
+            ctx.beginPath();
+            ctx.moveTo(fig[0], fig[1]);
+            ctx.lineTo(fig[2], fig[3]);
+            ctx.lineTo(fig[4], fig[5]);
+            ctx.lineTo(fig[6], fig[7]);
+            ctx.lineTo(fig[8], fig[9]);
+            ctx.lineTo(fig[10], fig[11]);
+            ctx.lineTo(fig[12], fig[13]);
+            ctx.lineTo(fig[14], fig[15]);
+            ctx.lineTo(fig[16], fig[17]);
+            ctx.lineTo(fig[18], fig[19]);
+            ctx.stroke();
+
+        });
+        
+    }
+   
+
+    //ctx.beginPath();
+    //ctx.moveTo(50,50);
+    //ctx.lineTo(200, 50);
+    //ctx.stroke();
+
+    //ctx.beginPath();
+    //ctx.moveTo(250,50);
+    //ctx.lineTo(400, 50);
+    //ctx.stroke();
+
+
+
+    //ctx.beginPath();
+    //
+    //ctx.stroke();
+</script>
