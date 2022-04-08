@@ -18,17 +18,14 @@
 </div>
 <pre>@Model.figures</pre>
 <script>
-    
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
-
     function Draw(){
         ctx.clearRect(0, 0, 1400, 800);
         $.get("draw/GetFigures", list => {
             console.log("draw");
             console.log(list);
             let fig = list[0].points;
-            //console.log(fig);
             //otrezok
             ctx.beginPath();
             ctx.moveTo(fig[0], fig[1]);
@@ -75,25 +72,6 @@
             ctx.lineTo(fig[16], fig[17]);
             ctx.lineTo(fig[18], fig[19]);
             ctx.stroke();
-
         });
-        
     }
-   
-
-    //ctx.beginPath();
-    //ctx.moveTo(50,50);
-    //ctx.lineTo(200, 50);
-    //ctx.stroke();
-
-    //ctx.beginPath();
-    //ctx.moveTo(250,50);
-    //ctx.lineTo(400, 50);
-    //ctx.stroke();
-
-
-
-    //ctx.beginPath();
-    //
-    //ctx.stroke();
 </script>
