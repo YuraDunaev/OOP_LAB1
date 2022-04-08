@@ -35,6 +35,5 @@
             }
             return null;
         }
-        public string Abc { get { return "123";  } internal set { } }
     }
 }

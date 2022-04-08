@@ -22,8 +22,5 @@ namespace OOP_LAB1.Controllers
             figures = _figureList.Figures;
             return figures;
         }
-        public object Test() {
-            return new { p1 = "abc", p2 = 123 };
-        }
     }
 }

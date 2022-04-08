@@ -14,9 +14,6 @@ namespace OOP_LAB1.Pages
             _logger = logger;
             _figureList = figureList;
         }
-
-
-
         public void OnGet()
         {
         }
